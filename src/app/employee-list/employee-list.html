@@ -1,0 +1,18 @@
+<h2>All Employee Details</h2>
+<a routerLink="/New" class="btn btn-success">Add New</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(employee of employee; track $index){
+            <tr>
+                <td>{{employee.name}}</td>
+                <td><a routerLink="/details/{{employee.id}}" class="btn btn-primary">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

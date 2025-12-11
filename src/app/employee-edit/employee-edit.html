@@ -1,0 +1,29 @@
+<h2>Add New Employee</h2>
+<form (ngSubmit)="savedata()" #form="ngForm">
+    <div class="mb-3 mt-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name!" name="name"
+                     required minlength="3" maxlength="20" [(ngModel)]="employeeobj.name" #ename="ngModel"/>
+        @if(ename.invalid && (ename.touched||ename.dirty)){
+            <div class="text-danger">
+                @if(ename.hasError("required")){<p>enter name!</p>}
+                @if(ename.hasError("minlength")){<p>Enter atleast 3 chars!</p>}
+            </div>
+        }
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" id="salary" placeholder="Enter salary!" name="salary" 
+                     required min="20000" max="200000" [(ngModel)]="employeeobj.salary" #esalary="ngModel" />
+        @if(esalary.invalid && (esalary.touched || esalary.dirty)){
+            <div class="text-danger">
+                @if(esalary.hasError("required")){<p>Enter salary!</p>}
+                @if(esalary.hasError("min")){<p>Not less than 20000!</p>}
+                @if(esalary.hasError("max")){<p>Not more than 200000!</p>}
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    <a routerLink="/" class="btn btn-primary">Home</a>
+</form>
